@@ -13,7 +13,6 @@ import {
   HiOutlineTrash,
 } from 'react-icons/hi';
 import { Button } from './ui/button';
-import { IProduct } from '@/types/globalTypes';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks';
 import {
   decreaseQuantity,
@@ -23,11 +22,11 @@ import {
 
 export default function Cart() {
   //! Dummy data
-  const { products } = useAppSelector((state) => state.cart);
+  const { products, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
   // const products: IProduct[] = [];
-  const total = 0;
+  // const total = 0;
 
   //! **
 

@@ -5,10 +5,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type ICart = {
   products: IProduct[];
+  total: number;
 };
 
 const initialState: ICart = {
   products: [],
+  total: 0,
 };
 
 const cartSlice = createSlice({
@@ -25,6 +27,7 @@ const cartSlice = createSlice({
       } else {
         state.products.push({ ...action.payload, quantity: 1 });
       }
+      state.total += action.payload.price;
     },
     increaseQuantity: (state, action: PayloadAction<IProduct>) => {
       const currentProduct = state.products.find(
@@ -33,6 +36,7 @@ const cartSlice = createSlice({
       if (currentProduct) {
         currentProduct.quantity = currentProduct.quantity! + 1;
       }
+      state.total += action.payload.price;
     },
     decreaseQuantity: (state, action: PayloadAction<IProduct>) => {
       const currentProduct = state.products.find(
@@ -41,6 +45,7 @@ const cartSlice = createSlice({
       if (currentProduct && currentProduct.quantity !== 1) {
         currentProduct.quantity = currentProduct.quantity! - 1;
       }
+      state.total -= action.payload.price;
     },
     removeFromCart: (state, action: PayloadAction<IProduct>) => {
       const removedProduct = state.products.filter(
@@ -48,6 +53,7 @@ const cartSlice = createSlice({
       );
       state.products = removedProduct;
       // state.products.push(removedProduct)
+      state.total -= action.payload.price * action.payload.quantity!;
     },
   },
 });
