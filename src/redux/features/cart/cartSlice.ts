@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { toast } from '@/components/ui/use-toast';
 import { IProduct } from '@/types/globalTypes';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
