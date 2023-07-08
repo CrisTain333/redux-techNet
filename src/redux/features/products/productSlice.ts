@@ -12,7 +12,12 @@ const initialState: IProduct = {
 const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleStock: (state) => {
+      state.status = !state.status;
+    },
+  },
 });
 
+export const { toggleStock } = productSlice.actions;
 export const productReducer = productSlice.reducer;
