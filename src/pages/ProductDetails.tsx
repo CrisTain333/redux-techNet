@@ -1,5 +1,6 @@
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
+import { useGetSingleProductsQuery } from '@/redux/api/apiSlice';
 import { IProduct } from '@/types/globalTypes';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -18,7 +19,8 @@ export default function ProductDetails() {
   const product = data?.find((item) => item._id === Number(id));
 
   //! Temporary code ends here
-
+  const { data: productDetails } = useGetSingleProductsQuery(id);
+  console.log(productDetails);
   return (
     <>
       <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300">
