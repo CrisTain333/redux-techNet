@@ -7,20 +7,7 @@ import { useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   const { id } = useParams();
-
-  //! Temporary code, should be replaced with redux
-  const [data, setData] = useState<IProduct[]>([]);
-  useEffect(() => {
-    fetch('../../public/data.json')
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
-
-  const product = data?.find((item) => item._id === Number(id));
-
-  //! Temporary code ends here
-  const { data: productDetails } = useGetSingleProductsQuery(id);
-  console.log(productDetails);
+  const { data: product } = useGetSingleProductsQuery(id);
   return (
     <>
       <div className="flex max-w-7xl mx-auto items-center border-b border-gray-300">
@@ -31,7 +18,7 @@ export default function ProductDetails() {
           <h1 className="text-3xl font-semibold">{product?.name}</h1>
           <p className="text-xl">Rating: {product?.rating}</p>
           <ul className="space-y-1 text-lg">
-            {product?.features?.map((feature) => (
+            {product?.features?.map((feature: any) => (
               <li key={feature}>{feature}</li>
             ))}
           </ul>
