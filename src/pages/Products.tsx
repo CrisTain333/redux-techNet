@@ -3,7 +3,10 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
-import { toggleStock } from '@/redux/features/products/productSlice';
+import {
+  filterPrice,
+  toggleStock,
+} from '@/redux/features/products/productSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks/hooks';
 import { IProduct } from '@/types/globalTypes';
 import { useEffect, useState } from 'react';
@@ -20,12 +23,8 @@ export default function Products() {
   const dispatch = useAppDispatch();
   const { priceRange, status } = useAppSelector((state) => state.product);
 
-  //! Dummy Data
-
-  //! **
-
   const handleSlider = (value: number[]) => {
-    console.log(value);
+    dispatch(filterPrice(value[0]));
   };
 
   let productsData;

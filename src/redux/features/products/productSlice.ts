@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type IProduct = {
   status: boolean;
@@ -16,8 +16,11 @@ const productSlice = createSlice({
     toggleStock: (state) => {
       state.status = !state.status;
     },
+    filterPrice: (state, action: PayloadAction<number>) => {
+      state.priceRange = action.payload;
+    },
   },
 });
 
-export const { toggleStock } = productSlice.actions;
+export const { toggleStock, filterPrice } = productSlice.actions;
 export const productReducer = productSlice.reducer;
