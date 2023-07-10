@@ -1,23 +1,22 @@
-import { usePostCommentMutation } from '@/redux/api/apiSlice';
+import {
+  useGetCommentsQuery,
+  usePostCommentMutation,
+} from '@/redux/api/apiSlice';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
 import { FiSend } from 'react-icons/fi';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from './ui/use-toast';
 
-const dummyComments = [
-  'Bhalo na',
-  'Ki shob ghori egula??',
-  'Eta kono product holo ??',
-  '200 taka dibo, hobe ??',
-];
-
-export default function ProductReview() {
-  const { id } = useParams();
+export default function ProductReview({ id }: any) {
   const [inputValue, setInputValue] = useState<string | undefined>();
   const [postComment, { isLoading, isSuccess, isError }] =
     usePostCommentMutation();
+
+  const { data } = useGetCommentsQuery(id);
+  console.log(data);
 
   console.log(isLoading);
   console.log(isSuccess);
@@ -31,7 +30,10 @@ export default function ProductReview() {
       },
     };
     postComment(options);
-    setInputValue(undefined);
+    toast({
+      description: 'Comment added successfully',
+    });
+    setInputValue('');
   };
   return (
     <div className="max-w-7xl mx-auto mt-5">
@@ -48,7 +50,7 @@ export default function ProductReview() {
         </Button>
       </div>
       <div className="mt-10">
-        {dummyComments.map((comment, index) => (
+        {data?.comments?.map((comment: string, index: number) => (
           <div key={index} className="flex gap-3 items-center mb-5">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
