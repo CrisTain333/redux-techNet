@@ -40,6 +40,7 @@ export default function ProductReview({ id }: any) {
       <div className="flex gap-5 items-center">
         <Textarea
           className="min-h-[30px]"
+          value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
         <Button
