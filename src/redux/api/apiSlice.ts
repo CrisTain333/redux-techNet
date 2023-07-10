@@ -13,7 +13,7 @@ export const api = createApi({
 
     postComment: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/comments/${id}`,
+        url: `/comment/${id}`,
         method: `POST`,
         body: data,
       }),
