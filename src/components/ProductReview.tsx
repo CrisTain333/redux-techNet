@@ -1,7 +1,3 @@
-import {
-  useGetCommentsQuery,
-  usePostCommentMutation,
-} from '@/redux/api/apiSlice';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
@@ -9,6 +5,10 @@ import { FiSend } from 'react-icons/fi';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from './ui/use-toast';
+import {
+  useGetCommentsQuery,
+  usePostCommentMutation,
+} from '@/redux/features/products/productApi';
 
 export default function ProductReview({ id }: any) {
   const [inputValue, setInputValue] = useState<string | undefined>();
