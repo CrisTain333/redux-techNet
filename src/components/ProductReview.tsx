@@ -31,6 +31,7 @@ export default function ProductReview() {
       },
     };
     postComment(options);
+    setInputValue(undefined);
   };
   return (
     <div className="max-w-7xl mx-auto mt-5">

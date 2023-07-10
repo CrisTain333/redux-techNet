@@ -18,6 +18,9 @@ export const api = createApi({
         body: data,
       }),
     }),
+    getComments: builder.query({
+      query: (id) => `/comment/${id}`,
+    }),
   }),
 });
 
@@ -25,4 +28,5 @@ export const {
   useGetProductsQuery,
   useGetSingleProductsQuery,
   usePostCommentMutation,
+  useGetCommentsQuery,
 } = api;
