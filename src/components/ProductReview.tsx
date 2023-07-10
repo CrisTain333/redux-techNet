@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Button } from './ui/button';
 import { Textarea } from './ui/textarea';
 import { FiSend } from 'react-icons/fi';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import { toast } from './ui/use-toast';
 import {
   useGetCommentsQuery,
@@ -42,6 +43,7 @@ export default function ProductReview({ id }: any) {
           className="min-h-[30px]"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && handlePostComment()}
         />
         <Button
           className="rounded-full h-10 w-10 p-2 text-[25px]"
